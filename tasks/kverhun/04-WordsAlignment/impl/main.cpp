@@ -45,7 +45,6 @@ namespace
     {
         auto lcs_matrix = _GetLcsDP(i_w1, i_w2);
 
-        enum class Direction { Top, Left, Diag };
         std::string w1_aligned, w2_aligned;
         
         auto fill_words = [&]()
