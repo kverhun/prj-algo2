@@ -63,15 +63,21 @@ namespace
 
         size_t sz1 = i_w1.size();
         size_t sz2 = i_w2.size();
-        for (size_t i = 0; i < sz1; ++i)
+        size_t i = sz1, j = sz2;
+        while(i > 0 && j > 0)
         {
-            for (size_t j = 0; j < sz2; ++j)
-            {
-                if (i_w1[i] == i_w2[j] && lcs_matrix[i][j] + 1 == lcs_matrix[i + 1][j + 1])
-                    lcs.push_back(i_w1[i]);
-            }
+        if(lcs_matrix[i-1][j-1] + 1 == lcs_matrix[i][j]) // same letter
+          {
+          lcs.push_back(i_w1[i-1]);
+          --i;
+          --j;
+          }
+        else if(lcs_matrix[i - 1][j] == lcs_matrix[i][j]) // go from where bigger length came
+          --i;
+        else
+          --j;
         }
-
+        std::reverse(lcs.begin(), lcs.end());
         return lcs;
     }
 }
@@ -117,7 +123,8 @@ int main(int i_argc, char** i_argv)
         Tests::TestLCS test_lcs_1("abc", "ac", "ac");
         Tests::TestLCS test_lcs_2("fyord", "world", "ord");
         Tests::TestLCS test_lcs_3("abcd", "abcd", "abcd");
-        for (auto& test : { test_lcs_1, test_lcs_2, test_lcs_3 })
+        Tests::TestLCS test_lcs_4("fyord", "worfld", "ord");
+        for (auto& test : { test_lcs_1, test_lcs_2, test_lcs_3, test_lcs_4 })
         {
             bool result = test.Run();
             std::cout << "Test: " << (result ? "OK" : "FAILED") << std::endl;
