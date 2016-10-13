@@ -57,8 +57,6 @@ namespace
     {
         auto lcs_matrix = _GetLcsDP(i_w1, i_w2);
 
-        _OutputMatrix(lcs_matrix);
-
         std::string lcs;
 
         size_t sz1 = i_w1.size();
