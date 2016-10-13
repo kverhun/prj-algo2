@@ -64,16 +64,16 @@ namespace
         size_t i = sz1, j = sz2;
         while(i > 0 && j > 0)
         {
-        if(lcs_matrix[i-1][j-1] + 1 == lcs_matrix[i][j]) // same letter
-          {
-          lcs.push_back(i_w1[i-1]);
-          --i;
-          --j;
-          }
-        else if(lcs_matrix[i - 1][j] == lcs_matrix[i][j]) // go from where bigger length came
-          --i;
-        else
-          --j;
+            if(lcs_matrix[i-1][j-1] + 1 == lcs_matrix[i][j]) // same letter
+            {
+                lcs.push_back(i_w1[i-1]);
+                --i;
+                --j;
+            }
+            else if(lcs_matrix[i - 1][j] == lcs_matrix[i][j]) // go from where bigger length came
+                --i;
+            else
+                --j;
         }
         std::reverse(lcs.begin(), lcs.end());
         return lcs;
