@@ -36,11 +36,10 @@ namespace
         size_t sz1 = i_w1.size();
         size_t sz2 = i_w2.size();
         
-        dp_matrix[0][0] = 0;
-        for (size_t i = 1; i <= sz1; ++i)
-            dp_matrix[i][0] = 1;
-        for (size_t j = 1; j <= sz2; ++j)
-            dp_matrix[0][j] = 1;
+        for (size_t i = 0; i <= sz1; ++i)
+            dp_matrix[i][0] = i;
+        for (size_t j = 0; j <= sz2; ++j)
+            dp_matrix[0][j] = j;
 
         for (size_t i = 0; i < sz1; ++i)
         {
@@ -187,7 +186,9 @@ int main(int i_argc, char** i_argv)
             "AGGCTATCACCTGACCTCCAGGCCGATGCCC", "TAGCTATCACGACCGCGGTCGATTTGCCCGAC",
             "_AGGCTATCACCTGACCTCCAGGCCGAT__GCCC___", "TAG_CTATCAC__GACCGC__GGTCGATTTGCCCGAC");
 
-        for (auto& test : { test1, test2, test3, test4 })
+        Tests::TestWordsAlignment test5("fyord", "worfld", "fyor__d", "_worfld");
+
+        for (auto& test : { test1, test2, test3, test4, test5 })
         {
             bool result = test.Run();
             std::cout << "Test: " << (result ? "OK" : "FAILED") << std::endl;
