@@ -55,5 +55,22 @@ target_link_libraries(WordsAlignment_Tests PUBLIC WordsAlignment)
 add_dependencies(WordsAlignment_Tests catch)
 ####################################################
 
+####################################################
+# Binary heap
+####################################################
+set(BinaryHeap_SOURCE_DIR 06-BinaryHeap/impl)
+set(BinaryHeap_TEST_DIR 06-BinaryHeap/unit_tests)
+
+add_library(BinaryHeap SHARED
+    ${BinaryHeap_SOURCE_DIR}/_Library.h
+    ${BinaryHeap_SOURCE_DIR}/BinaryHeap.h
+    ${BinaryHeap_SOURCE_DIR}/BinaryHeap.cpp)
+target_compile_definitions(BinaryHeap PRIVATE BINARY_HEAP_LIBRARY)
+
+add_executable(BinaryHeap_Tests ${BinaryHeap_TEST_DIR}/binary_heap_tests.cpp)
+target_link_libraries(BinaryHeap_Tests PUBLIC BinaryHeap)
+add_dependencies(BinaryHeap_Tests catch)
+####################################################
+
 include_directories(${CATCH_INCLUDE_DIR} ${COMMON_INCLUDES})
 enable_testing(true)  # Enables unit-testing.
