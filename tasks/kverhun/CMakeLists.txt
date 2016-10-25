@@ -72,5 +72,25 @@ target_link_libraries(BinaryHeap_Tests PUBLIC BinaryHeap)
 add_dependencies(BinaryHeap_Tests catch)
 ####################################################
 
+####################################################
+# Graphs
+####################################################
+set(Graphs_SOURCE_DIR 07-Graphs/impl)
+set(Graphs_TEST_DIR 07-Graphs/unit_tests)
+
+add_library(Graphs SHARED
+    ${Graphs_SOURCE_DIR}/_Library.h		
+    ${Graphs_SOURCE_DIR}/Graph.h
+    ${Graphs_SOURCE_DIR}/Graph.cpp
+    ${Graphs_SOURCE_DIR}/GraphAlgorithms.h
+    ${Graphs_SOURCE_DIR}/GraphAlgorithms.cpp
+)
+target_compile_definitions(Graphs PRIVATE GRAPHS_LIBRARY)
+
+add_executable(Graphs_Tests ${Graphs_TEST_DIR}/graphs_tests.cpp)
+target_link_libraries(Graphs_Tests PUBLIC Graphs)
+add_dependencies(Graphs_Tests Graphs)
+####################################################
+
 include_directories(${CATCH_INCLUDE_DIR} ${COMMON_INCLUDES})
 enable_testing(true)  # Enables unit-testing.
