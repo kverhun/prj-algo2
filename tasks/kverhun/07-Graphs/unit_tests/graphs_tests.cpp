@@ -34,7 +34,7 @@ TEST_CASE("ShortersPath_Dijkstra_Test2")
     REQUIRE(100. == sh_path_34.second);
 
     auto sh_path_14 = GetShortestPathDijkstra(graph, 1, 4);
-    REQUIRE(101. == sh_path_14.second);
+    REQUIRE(70. == sh_path_14.second);
 }
 
 TEST_CASE("ShortestPath_Dijkstra_Test3")
@@ -46,4 +46,7 @@ TEST_CASE("ShortestPath_Dijkstra_Test3")
 
     auto sh_path_14 = GetShortestPathDijkstra(graph, 1, 4);
     REQUIRE(55. == sh_path_14.second);
+
+    auto sh_path_24 = GetShortestPathDijkstra(graph, 2, 4);
+    REQUIRE(45. == sh_path_24.second);
 }

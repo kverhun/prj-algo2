@@ -43,16 +43,22 @@ namespace Graphs
         };
 
         std::map<Graph::TVertex, double> distances_to;
+        for (const auto& v : i_graph.GetVertexes())
+            distances_to[v] = std::numeric_limits<double>::max();
 
         while (!queue.empty())
         {
             auto next_vertex_to_visit = queue.top();
-            distances_to[std::get<0>(next_vertex_to_visit)] = std::get<1>(next_vertex_to_visit);
+            
+            auto vertex = std::get<0>(next_vertex_to_visit);
+            auto distance = std::get<1>(next_vertex_to_visit);
+
+            distances_to[vertex] = std::min(distances_to[vertex], distance);
             
             queue.pop();
-            if (std::count(visited_vertexes.begin(), visited_vertexes.end(), std::get<0>(next_vertex_to_visit)) == 0)
+            if (std::count(visited_vertexes.begin(), visited_vertexes.end(), vertex) == 0)
             {
-                visit(std::get<0>(next_vertex_to_visit), std::get<1>(next_vertex_to_visit));
+                visit(vertex, distance);
             }
         }
 
