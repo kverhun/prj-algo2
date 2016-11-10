@@ -55,5 +55,10 @@ target_link_libraries(WordsAlignment_Tests PUBLIC WordsAlignment)
 add_dependencies(WordsAlignment_Tests catch)
 ####################################################
 
+####################################################
+set(BigData_SOURCE_DIR 09-BigData/impl)
+
+add_executable(DataAllocationTest ${BigData_SOURCE_DIR}/main.cpp)
+
 include_directories(${CATCH_INCLUDE_DIR} ${COMMON_INCLUDES})
 enable_testing(true)  # Enables unit-testing.
